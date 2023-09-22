@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Product = sequelize.define("product", {
+    const Specialist = sequelize.define("specialist", {
         id: {
           type: Sequelize.INTEGER,
           autoIncrement: true,
@@ -10,10 +10,15 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
           allowNull: false
         },
-        price: {
-          type: Sequelize.INTEGER
+        uid: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+        job: {
+          type: Sequelize.STRING,
+          allowNull: false
         }
       });
   
-    return Product;
+    return Specialist;
   };

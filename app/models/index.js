@@ -18,12 +18,28 @@ db.sequelize = sequelize;
 
 db.user = require("./user.model")(sequelize, Sequelize);
 db.role = require("./role.model")(sequelize, Sequelize);
-db.Company = require("./data_header.model")(sequelize, Sequelize);
-db.Product = require("./data_v1.model")(sequelize, Sequelize);
-// db.dataV2 = require("./data_v2.model")(sequelize, Sequelize);
+
+// Model DB Doctors Shedule
+db.Company = require("./dataCompany")(sequelize, Sequelize);
+db.Departament = require("./dataDepartment")(sequelize, Sequelize);
+db.Specialist = require("./dataSpecialist")(sequelize, Sequelize);
+db.Schedule = require("./dataSchedule")(sequelize, Sequelize);
 
 
-db.Product.hasMany(db.Company, { onDelete: "cascade" });
+
+db.Company.hasMany(db.Departament, { onDelete: "cascade" });
+db.Departament.belongsTo(db.Company);
+
+// db.Company.hasMany(db.Specialist, { onDelete: "cascade" });
+// db.Company.hasMany(db.Schedule, { onDelete: "cascade" });
+
+db.Departament.hasMany(db.Specialist, { onDelete: "cascade" });
+db.Specialist.belongsTo(db.Departament);
+
+db.Specialist.hasMany(db.Schedule, { onDelete: "cascade" });
+db.Schedule.belongsTo(db.Specialist);
+
+
 // db.dataV1.hasMany(db.dataHeader, {
 //    foreignKey: 'MOID'
 // });
