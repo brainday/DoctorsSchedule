@@ -4,23 +4,18 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.INTEGER,
           autoIncrement: true,
           primaryKey: true,
-          allowNull: false
         },
         visit: {
           type: Sequelize.DATE,
-          allowNull: false
         },
         room: {
           type: Sequelize.STRING,
-          allowNull: false
         },
-        apointment: {
+        appointment: {
           type: Sequelize.STRING,
-          allowNull: false
         },
         slot: {
           type: Sequelize.STRING,
-          allowNull: false
         },
       });
   

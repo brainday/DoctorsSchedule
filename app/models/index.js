@@ -36,8 +36,10 @@ db.Departament.belongsTo(db.Company);
 db.Departament.hasMany(db.Specialist, { onDelete: "cascade" });
 db.Specialist.belongsTo(db.Departament);
 
+// db.Departament.hasMany(db.Schedule, { onDelete: "cascade" });
 db.Specialist.hasMany(db.Schedule, { onDelete: "cascade" });
 db.Schedule.belongsTo(db.Specialist);
+
 
 
 // db.dataV1.hasMany(db.dataHeader, {
