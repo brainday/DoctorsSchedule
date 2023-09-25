@@ -11,8 +11,8 @@ module.exports = (sequelize, Sequelize) => {
           allowNull: false
         },
         uid: {
-          type: Sequelize.INTEGER,
-          allowNull: false
+          type: Sequelize.STRING,
+          notEmpty: true
         },
         job: {
           type: Sequelize.STRING,

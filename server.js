@@ -14,7 +14,7 @@ createData();
 
 // db.sequelize.sync({force: true}).then(() => {
 //   console.log('Drop and Resync Db');
-// //    initial();
+//    initial();
 // });
 
 // function initial() {
@@ -30,10 +30,11 @@ createData();
 //   }
 
 let corsOption = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:8080",
+    headers: {'Access-Control-Allow-Headers': 'x-access-token'}
 };
 
-app.use(cors(corsOption));
+app.use(cors());
 
 app.use(express.json());
 

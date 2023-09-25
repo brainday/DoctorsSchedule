@@ -4,56 +4,63 @@ const { json } = require("sequelize");
 
 
 
-// const Op = db.Sequelize.Op;
-
-
 async function createData() {
-          // const response = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
-          // console.log(response.title);
-  
-        //   db.Company.create({ name: "ГБУЗ ТО ОБЛАСТНАЯ БОЛЬНИЦА № 3", oid: "1.2.643.5.1.13.13.12.2.72.7326" }).then(res=>{
-        //     // получаем id созданной МО
-        //     const compId = res.id;
-        //     //создаем пару вложенности для этой МО
-        //     db.Departament.create({name: "Диагностическое отделение", oid: "1.2.643.5.1.13.13.12.2.72.7327.0.22187", address: "г. Тобольск, 3б микрорайон, 24", companyId: compId}).then(res=>{
-        //       const depId = res.id;
-        //       db.Specialist.create({name: "Давыдова Елена Александровна", uid: "28", job: "врач - детский хирург", companyId: compId, departmentId: depId}).then(res=>{
-        //         const specId = res.id;
-        //         db.Schedule.create({visit: "2023-09-22T08:00:00+05:00", room: "Кабинет ЭКГ (3б мкр,24)", appointment: "Первичный прием", slot: "Доступен", specialistId: specId})
-        //         db.Schedule.create({visit: "2023-09-22T08:30:00+05:00", room: "Кабинет ЭКГ (3б мкр,24)", appointment: "Первичный прием", slot: "Доступен", specialistId: specId})
-        //       }).catch(err=>console.log(err));
-        //       db.Specialist.create({name: "Давыдова Елена Александровна", uid: "28", job: "врач - детский хирург", companyId: compId, departmentId: depId}).then(res=>{
-        //         const specId = res.id;
-        //         db.Schedule.create({visit: "2023-09-22T08:00:00+05:00", room: "Кабинет ЭКГ (3б мкр,24)", appointment: "Первичный прием", slot: "Доступен", specialistId: specId})
-        //         db.Schedule.create({visit: "2023-09-22T08:30:00+05:00", room: "Кабинет ЭКГ (3б мкр,24)", appointment: "Первичный прием", slot: "Доступен", specialistId: specId})
-        //       }).catch(err=>console.log(err));        
-        //     }).catch(err=>console.log(err));
+        //   axios.get('http://localhost:5000/api')
+        //   .then(res => {
+        //     data = [];
+        //     data.push(res.data);
 
-        //     db.Departament.create({name: "Диагностическое отделение", oid: "1.2.643.5.1.13.13.12.2.72.7327.0.22187", address: "г. Тобольск, 3б микрорайон, 24", companyId: compId}).then(res=>{
-        //       const depId = res.id;
-        //       db.Specialist.create({name: "Давыдова Елена Александровна", uid: "28", job: "врач - детский хирург", companyId: compId, departmentId: depId}).then(res=>{
-        //         const specId = res.id;
-        //         db.Schedule.create({visit: "2023-09-22T08:00:00+05:00", room: "Кабинет ЭКГ (3б мкр,24)", appointment: "Первичный прием", slot: "Доступен", specialistId: specId})
-        //         db.Schedule.create({visit: "2023-09-22T08:30:00+05:00", room: "Кабинет ЭКГ (3б мкр,24)", appointment: "Первичный прием", slot: "Доступен", specialistId: specId})
-        //       }).catch(err=>console.log(err));
-        //     }).catch(err=>console.log(err));
-        // }).catch(err=>console.log(err));
+            
+        //     db.Company.findOne({ where: {oid: res.data.MO_OID} }).then(project => {
+        //       if (project === null) {
 
-        const tasks = await db.Company.findAll({
-          include: [
-            { model: db.Departament,
-              separate: true },
-            { model: db.Departament,
-              include: [
-                { model: db.Specialist },
-                { model: db.Specialist,
-                include: db.Schedule,
-                separate: true }
-              ],
-              separate: true }
-        ]}
-        );
-        console.log(JSON.stringify(tasks, null, 2));
+        //         data.forEach(element => {
+        //         db.Company.create({ name: element.MO_Name, oid: element.MO_OID }).then(res=>{
+
+        //           const compId = res.id;
+
+        //           console.log(element.MO_SP_List)
+                  
+        //           element.MO_SP_List.forEach(dep => {
+
+        //             db.Departament.create({name: dep.SP_MO_Name, oid: dep.SP_MO_OID, address: dep.SP_MO_Address, companyId: compId}).then(res=>{
+        //               const depId = res.id;
+
+        //               dep.SP_Resource_List.forEach(spec => {
+        //                 db.Specialist.create({name: spec.Specialist, uid: spec.Post_id, job: spec.Post_Name, companyId: compId, departmentId: depId}).then(res=>{
+        //                   const specId = res.id;
+
+        //                   spec.Schedule.forEach(sched => {
+        //                     db.Schedule.create({visit: sched.VisitTime, room: sched.SP_MO_Room, appointment: sched.TypeAppointment, slot: sched.Slot_Available, specialistId: specId})
+        //               })
+        //               }).catch(err=>console.log(err));
+        //           })
+        //         }).catch(err=>console.log(err));
+        //       })
+        //       })
+        //       })
+        //       } else {
+        //         console.log('Запись найдена!');
+        //       };
+        //     }).catch(err=>console.log(err));
+          
+        // }).catch(err => console.log(err))
+
+        // const tasks = await db.Company.findAll({
+        //   include: [
+        //     { model: db.Departament,
+        //       separate: true },
+        //     { model: db.Departament,
+        //       include: [
+        //         { model: db.Specialist },
+        //         { model: db.Specialist,
+        //         include: db.Schedule,
+        //         separate: true }
+        //       ],
+        //       separate: true }
+        // ]}
+        // );
+        // console.log(JSON.stringify(tasks, null, 2));
 
       };
 
