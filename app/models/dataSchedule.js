@@ -3,20 +3,23 @@ module.exports = (sequelize, Sequelize) => {
         id: {
           type: Sequelize.INTEGER,
           autoIncrement: true,
-          primaryKey: true,
+          primaryKey: true
         },
         visit: {
-          type: Sequelize.DATE,
+          type: Sequelize.DATE
         },
         room: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         appointment: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
         slot: {
-          type: Sequelize.STRING,
+          type: Sequelize.STRING
         },
+      },
+      {
+        timestamps: false
       });
   
     return Schedule;

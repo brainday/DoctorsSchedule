@@ -1,5 +1,7 @@
 const db = require("../models");
 const { json } = require("sequelize");
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
@@ -11,8 +13,18 @@ exports.api = (req, res) => {
   res.send(data)
 };
 
+exports.api2 = (req, res) => {
+  const data = require('../data/data2.json');
+  res.send(data)
+};
+
 exports.json = (req, res) => {  
+  const oid = req.params.oid;
+  var condition = oid ? { oid: { [Op.eq]: `${oid}` } } : null;
+
+
       db.Company.findAll({ 
+        where: condition,
         include: [
               { model: db.Departament,
                 separate: true },
@@ -27,7 +39,13 @@ exports.json = (req, res) => {
           ]
        })
       .then(data => {
-        res.send(data);
+        if (data.length != 0) {
+          res.send(data);
+        } else {
+          res.status(404).send({
+            message: `Cannot find MO with oid=${oid}.`
+          });
+        }
       })
       .catch(err => {
         res.status(500).send({
@@ -35,10 +53,6 @@ exports.json = (req, res) => {
             err.message || "Some error occurred while retrieving tutorials."
         });
       });
-    //   db.Company.findAll({
-    //   
-    // )
-  
 };
 
 exports.userBoard = (req, res) => {

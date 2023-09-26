@@ -5,7 +5,7 @@ const app = express();
 
 const db = require("./app/models");
 const Role = db.role;
-const DataApi = db.DataApi;
+const User = db.user;
 
 // db.sequelize.sync();
 
@@ -24,14 +24,14 @@ createData();
 //     });
    
 //     Role.create({
-//       id: 3,
+//       id: 2,
 //       name: "admin"
 //     });
 //   }
 
 let corsOption = {
     origin: "http://localhost:8080",
-    headers: {'Access-Control-Allow-Headers': 'x-access-token'}
+    // headers: {'Access-Control-Allow-Headers': 'x-access-token'}
 };
 
 app.use(cors());

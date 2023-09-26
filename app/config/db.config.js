@@ -4,4 +4,7 @@ module.exports = {
     PASSWORD: "",
     DB: "doctors_schedule",
     dialect: "mysql",
+    dialectOptions: {
+      multipleStatements: true
+    }
   };

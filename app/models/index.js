@@ -30,25 +30,12 @@ db.Schedule = require("./dataSchedule")(sequelize, Sequelize);
 db.Company.hasMany(db.Departament, { onDelete: "cascade" });
 db.Departament.belongsTo(db.Company);
 
-// db.Company.hasMany(db.Specialist, { onDelete: "cascade" });
-// db.Company.hasMany(db.Schedule, { onDelete: "cascade" });
-
 db.Departament.hasMany(db.Specialist, { onDelete: "cascade" });
 db.Specialist.belongsTo(db.Departament);
 
-// db.Departament.hasMany(db.Schedule, { onDelete: "cascade" });
 db.Specialist.hasMany(db.Schedule, { onDelete: "cascade" });
 db.Schedule.belongsTo(db.Specialist);
 
-
-
-// db.dataV1.hasMany(db.dataHeader, {
-//    foreignKey: 'MOID'
-// });
-
-// db.dataV2.hasMany(db.dataV1, {
-//   foreignKey: 'SPList'
-// });
 
 
 db.role.belongsToMany(db.user, {

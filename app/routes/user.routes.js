@@ -13,8 +13,9 @@ module.exports = function(app) {
   app.get("/api/test/all", controller.allAccess);
 
   app.get("/api", controller.api);
+  app.get("/api2", controller.api2);
 
-  app.get("/api/data", [authJwt.verifyToken], controller.json);
+  app.get("/api/data/:oid", [authJwt.verifyToken], controller.json);
 
   app.get(
     "/api/test/user",
